@@ -1,0 +1,15 @@
+# Senior_Design repo root (git root is here, not nucleo-driver/)
+# STM32 / CubeIDE rules live in nucleo-driver/.gitignore
+
+# STM32CubeIDE workspace (sibling to nucleo-driver/)
+.metadata/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

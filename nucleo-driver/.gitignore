@@ -1,0 +1,71 @@
+# nucleo-driver — STM32CubeIDE / embedded firmware
+# Based on https://github.com/github/gitignore/blob/main/Global/STM32CubeIDE.gitignore
+# Keep in repo: .cproject, .project, *.ld, Src/, Inc/, Startup/, *.ioc (if added later)
+
+# --- Eclipse / STM32CubeIDE workspace (usually parent of the project folder) ---
+.metadata/
+
+# Per-machine IDE prefs (formatters, paths). Omit this block if the team wants
+# identical CubeIDE settings committed.
+.settings/
+
+# Debugger / probe configs (ST-Link serial, paths, etc.)
+*.launch
+*.jlink
+
+*.log
+
+# --- Build outputs ---
+Debug/
+Release/
+build/
+
+*.elf
+*.map
+*.bin
+*.hex
+*.srec
+*.lst
+*.o
+*.d
+*.a
+*.su
+*.crl
+
+# TouchGFX (if you add it later)
+TouchGFX/generated/
+TouchGFX/build/
+TouchGFX/simulator/msvs/.vs/
+
+# --- Other editors / IDEs (teammates not on CubeIDE) ---
+.idea/
+*.code-workspace
+.vscode/*
+!.vscode/extensions.json
+!.vscode/c_cpp_properties.json
+!.vscode/settings.json
+
+# Eclipse extras (safe for CDT; does not ignore .cproject / .project)
+bin/
+tmp/
+*.tmp
+.externalToolBuilders/
+.loadpath
+.recommenders/
+.recommenders
+.autotools/
+.factorypath
+.apt_generated/
+.apt_generated_tests/
+
+# --- OS / editor noise ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+*.bak
