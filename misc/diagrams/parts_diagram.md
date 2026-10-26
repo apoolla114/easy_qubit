@@ -2,13 +2,15 @@
 
 Hybrid of **CW ODMR** from Zhang et al., *Little bits of diamond* ([Am. J. Phys. 86, 225 (2018)](https://doi.org/10.1119/1.5023389)) with **automated MW** (ADF4351 + microcontroller) and **compact detection** from Mariani et al. ([AIP Advances 12, 065321 (2022)](https://doi.org/10.1063/5.0089161)).
 
+**BOM:** [../parts_list.md](../parts_list.md) · **Goals:** [../goals.md](../goals.md)
+
 Two views of the same apparatus:
 
 
 | View           | Section                               | Use when                                     |
 | -------------- | ------------------------------------- | -------------------------------------------- |
 | **Conceptual** | [below](#conceptual-signal--function) | Physics, reports, “what does this block do?” |
-| **Physical**   | [below](#physical-build--layout)      | Assembly, wiring, 3D prints, bench layout    |
+| **Physical**   | [below](#physical-build--layout)      | Assembly, Thorlabs mounts, bench layout      |
 
 
 ### Cross-reference (conceptual ↔ physical)
@@ -103,13 +105,13 @@ flowchart TB
         SYN --> AMP --> ATT --> COAX
     end
 
-    subgraph LASERASM ["Laser assembly — 3D-printed mount + lens holder"]
+    subgraph LASERASM ["Laser assembly — Thorlabs MB4 post + VC3C clamp"]
         LASER["Quarton 520 nm module\n(built-in driver & collimation)"]
-        L2["CAX183 focusing lens"]
+        L2["CAX183 in LMR05S"]
         LASER --> L2
     end
 
-    subgraph HOLDER ["Sample holder — 3D-printed diamond / filter / detector mount"]
+    subgraph HOLDER ["Sample holder — Thorlabs post + SM05 filter stack"]
         direction TB
         DIA["Diamond (top face — BurkeLab)"]
         LP1["RG630"]
@@ -139,9 +141,9 @@ flowchart TB
 
 | Build unit         | Parts inside                                                                       | How it connects                                                                            |
 | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Laser assembly** | Module + CAX183 in printed lens holder                                             | Aim at **top** of diamond; height adjusted on mount                                        |
-| **Sample holder**  | Diamond **on** filters **on** detector PCB; wire PCB **same printed part**; magnet | **SMA coax** from bench to wire PCB; **analog cable** from detector PCB to microcontroller |
-| **Bench plate**    | Microcontroller, ADF4351, amp(s), attenuator, coax                                 | **USB** to PC; supplies from lab PSUs; **common ground** with detector analog              |
+| **Laser assembly** | **VC3C** + Quarton on **TR/PH**; **LMR05S** + CAX183 on second post              | Aim at **top** of diamond; height on **MB4**                                               |
+| **Sample holder**  | **SM05L10** + RG630 + 5CGA-630; diamond on tube face; **DETPCB** on **TR3C**; wire PCB | **SMA coax** to wire PCB; **shielded** analog to CTL                                       |
+| **Bench plate**    | **MB4** or separate plate: CTL, ADF4351, amp(s), attenuator, coax                  | **USB** to PC; lab PSUs; common ground with analog                                         |
 
 
 
