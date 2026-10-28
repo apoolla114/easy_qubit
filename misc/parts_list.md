@@ -2,7 +2,7 @@
 
 **Apparatus:** Ensemble NV **CW ODMR** · **Program budget:** ~**$800** · **December cash target:** ~**$500–550** (lab/Burke items excluded)
 
-**Diagram:** [diagrams/parts_diagram.md](diagrams/parts_diagram.md) · **Goals:** [goals.md](goals.md) · **Add-on cart (vs original team list):** [parts_list_additional_purchases.md](parts_list_additional_purchases.md)
+**Diagram:** [diagrams/parts_diagram.md](diagrams/parts_diagram.md) · **Diagram (costs):** [diagrams/parts_diagram_cost.md](diagrams/parts_diagram_cost.md) · **Goals:** [goals.md](goals.md) · **Add-on cart (vs original team list):** [parts_list_additional_purchases.md](parts_list_additional_purchases.md)
 
 **Legend:** **P0** = December assembly · **P1** = after bring-up · **P2** = March stretch · **Given/Lab** = no team cash
 

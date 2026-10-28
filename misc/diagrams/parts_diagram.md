@@ -11,6 +11,7 @@ Two views of the same apparatus:
 | -------------- | ------------------------------------- | -------------------------------------------- |
 | **Conceptual** | [below](#conceptual-signal--function) | Physics, reports, “what does this block do?” |
 | **Physical**   | [below](#physical-build--layout)      | Assembly, Thorlabs mounts, bench layout      |
+| **Costs**      | [parts_diagram_cost.md](parts_diagram_cost.md) | Budget, orders, per-block $                  |
 
 
 ### Cross-reference (conceptual ↔ physical)
