@@ -21,8 +21,8 @@ Two views of the same apparatus:
 | ----------------------------------- | ------------------------------------------------------------------ |
 | Microcontroller + ADC + USB logging | **Bench** — CTL module; USB to PC                                  |
 | Synthesizer (set MW frequency)      | **Bench** — ADF4351                                                |
-| Amplifier / attenuator              | **Bench** — TQP3M9009, att, SMA coax                               |
-| Wire delivery (RF → B₁)             | **Holder** — wire-launch PCB + Burke wire                          |
+| Amplifier (attenuator optional)     | **Bench/table** — TQP3M9009; SMA coax to Burke antenna             |
+| MW antenna (RF → B₁)                | **Holder** — Burke PCB + SMA female (supplied)                     |
 | 520 nm pump + focus                 | **Laser assembly** — Quarton + CAX183                              |
 | NV sample + B₀                      | **Holder** — diamond + magnet                                      |
 | Filter stack (PL band)              | **Holder** — RG630, 5CGA-630 in stack                              |
@@ -49,8 +49,8 @@ flowchart TB
     subgraph MW ["Microwave — manipulate electron spin"]
         SYN["Frequency synthesizer\n(ADF4351)"]
         AMP["Power amplifier\n(TQP3M9009)"]
-        ATT["Attenuator\n(limit power & reflections)"]
-        DEL["Thin-wire delivery\nRF current → B₁ at NVs"]
+        ATT["Attenuator\n(optional — defer)"]
+        ANT["Burke MW antenna\n(PCB + SMA → B₁ at NVs)"]
     end
 
     subgraph OPT ["Optical — pump NV ensemble (CW)"]
@@ -70,8 +70,8 @@ flowchart TB
     end
 
     CTL -->|program f_MW| SYN
-    SYN -->|CW microwave| AMP --> ATT --> DEL
-    DEL -.->|B₁| DIA
+    SYN -->|CW microwave| AMP --> ATT --> ANT
+    ANT -.->|B₁| DIA
 
     SRC --> LNS -->|520 nm| DIA
     MAG -.->|B₀| DIA
@@ -90,23 +90,23 @@ flowchart TB
 
 ## Physical (build & layout)
 
-**Three things you fabricate / wire:** laser assembly, sample holder, bench RF + microcontroller.
+**Three things you assemble / wire:** laser assembly, sample holder (optics + Burke antenna), bench/table RF + microcontroller (SMA chain).
 
 ```mermaid
 flowchart TB
     PC["PC"]
 
-    subgraph BENCH ["Bench — RF & microcontroller (wired on plate / breadboard)"]
+    subgraph BENCH ["Bench/table — RF & microcontroller (SMA chain, no breadboard)"]
         CTL["Microcontroller\n(on-chip ADC)"]
         SYN["ADF4351 module"]
         AMP["MW amp(s) TQP3M9009"]
-        ATT["RF attenuator"]
+        ATT["RF attenuator\n(optional)"]
         COAX["SMA coax"]
         CTL -->|SPI| SYN
         SYN --> AMP --> ATT --> COAX
     end
 
-    subgraph LASERASM ["Laser assembly — Thorlabs MB4 post + VC3C clamp"]
+    subgraph LASERASM ["Laser assembly — lab breadboard post + VC3C clamp"]
         LASER["Quarton 520 nm module\n(built-in driver & collimation)"]
         L2["CAX183 in LMR05S"]
         LASER --> L2
@@ -118,16 +118,14 @@ flowchart TB
         LP1["RG630"]
         LP2["5CGA-630"]
         DETPCB["Detector PCB\nBPW34 + OPA381 TIA"]
-        WPCB["Wire-launch PCB\n(SMA jack + pads)"]
-        WIRE["40 µm Cu wire (BurkeLab)"]
+        ANT["Burke MW antenna\n(PCB + SMA female)"]
         MAG["Permanent magnet\n(on or near holder)"]
         DIA --> LP1 --> LP2 --> DETPCB
-        WPCB --> WIRE
     end
 
     PC <-->|USB| CTL
-    COAX -->|SMA to holder| WPCB
-    WIRE -.->|RF current near top face| DIA
+    COAX -->|SMA to antenna| ANT
+    ANT -.->|RF near sample| DIA
     L2 -.->|520 nm beam down| DIA
     MAG -.->|B₀| DIA
     DETPCB -->|shielded wire to bench| CTL
@@ -142,9 +140,9 @@ flowchart TB
 
 | Build unit         | Parts inside                                                                       | How it connects                                                                            |
 | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Laser assembly** | **VC3C** + Quarton on **TR/PH**; **LMR05S** + CAX183 on second post              | Aim at **top** of diamond; height on **MB4**                                               |
-| **Sample holder**  | **SM05L10** + RG630 + 5CGA-630; diamond on tube face; **DETPCB** on **TR3C**; wire PCB | **SMA coax** to wire PCB; **shielded** analog to CTL                                       |
-| **Bench plate**    | **MB4** or separate plate: CTL, ADF4351, amp(s), attenuator, coax                  | **USB** to PC; lab PSUs; common ground with analog                                         |
+| **Laser assembly** | **VC3C** + Quarton on **TR/PH**; **LMR05S** + CAX183 on second post              | Aim at **top** of diamond; posts on **lab MB4** (or equivalent)                            |
+| **Sample holder**  | **SM05L10** + RG630 + 5CGA-630; diamond; **lab perfboard** PD+TIA; **Burke antenna** | **SMA coax** to Burke **SMA female**; **shielded** analog to CTL                         |
+| **MW bench**       | ADF4351, amp(s), optional att, **SMA coax** on table                               | **Synth → amp → (att) → coax → Burke antenna**; CTL **USB** to PC; lab PSUs              |
 
 
 
@@ -164,7 +162,7 @@ flowchart TB
       │  BPW34  │  ← same PCB as OPA381 (TIA)
       │ OPA381  │
       └─────────┘
-   wire PCB + µm wire ── near diamond / PL region
+   Burke MW antenna (SMA) ── RF near diamond / PL region
 ```
 
 
@@ -172,9 +170,9 @@ flowchart TB
 ### Build & bring-up order
 
 1. **Detector PCB** — solder BPW34 + OPA381; verify TIA output (no diamond yet).
-2. **Holder** — stack filters on PCB, fix diamond on top; attach wire-launch PCB; solder Burke wire; add magnet.
+2. **Holder** — stack filters; diamond on top; **lab perfboard** PD+TIA; mount **Burke antenna** near sample; add magnet.
 3. **Laser assembly** — align beam on diamond top face.
-4. **Bench RF** — synth + amp + att + coax to holder; **low power** first (wire ≠ 50 Ω load).
+4. **Bench RF** — synth → amp → (att if needed) → **SMA coax** → Burke **SMA female**; **low power** first.
 5. **Microcontroller** — SPI frequency sweeps + ADC readout; log PL vs frequency.
 
 

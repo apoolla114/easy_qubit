@@ -1,6 +1,6 @@
 ## Apparatus diagram — with costs (team design)
 
-Same layout as [parts_diagram.md](parts_diagram.md). **Line format:** `role, part / MPN, ext $` (list USD, Oct 2026). **$0** = BurkeLab, EECS lab, or team stock unless noted.
+Same layout as [parts_diagram.md](parts_diagram.md). **Line format:** `role, part / MPN, ext $` (list USD). **$0** = BurkeLab, EECS lab, or team stock unless noted.
 
 **BOM detail:** [../parts_list.md](../parts_list.md) · **No-cost views:** [parts_diagram.md](parts_diagram.md)
 
@@ -9,7 +9,7 @@ Same layout as [parts_diagram.md](parts_diagram.md). **Line format:** `role, par
 | **Conceptual** | [below](#conceptual-signal--function-costs) |
 | **Physical** | [below](#physical-build--layout-costs) |
 
-**Pricing scope:** P0 parts you **buy** (Scenario B — full Thorlabs Tier 1, both filters, 1× amp). Ranges in BOM (e.g. 2× amp) are not shown here.
+**Pricing scope:** P0 parts you **buy** (1× MW amp; attenuator **deferred**; no custom wire-launch PCB; no PCB-mount SMA). **MB4** from lab (not in Thorlabs cart). Team checkout reference: **Amazon ~$102**, **program ~$572** (Oct 2026, incl. tax/shipping on some vendors).
 
 ---
 
@@ -23,16 +23,16 @@ flowchart TB
         CTL <-->|USB| PC
     end
 
-    subgraph MW ["Microwave — section total $42"]
+    subgraph MW ["Microwave — section total $27"]
         SYN["synthesizer, ADF4351 module, $23"]
         AMP["amplifier, TQP3M9009, $4"]
-        ATT["attenuator, SMA fixed, $0"]
-        DEL["wire delivery, JLC wire-launch PCB + Burke wire, $15"]
+        ATT["attenuator, optional defer, $0"]
+        ANT["Burke MW antenna, PCB + SMA female, $0"]
     end
 
-    subgraph OPT ["Optical pump — section total $44"]
+    subgraph OPT ["Optical pump — section total $28"]
         SRC["520 nm source, Quarton VLM-520-74, $28"]
-        LNS["focus lens, Thorlabs CAX183, $16"]
+        LNS["focus lens, CAX183, $0 in Thorlabs cart"]
     end
 
     subgraph SAMPLE ["Sample — section total $0"]
@@ -47,8 +47,8 @@ flowchart TB
     end
 
     CTL -->|program f_MW| SYN
-    SYN -->|CW microwave| AMP --> ATT --> DEL
-    DEL -.->|B₁| DIA
+    SYN -->|CW microwave| AMP --> ATT --> ANT
+    ANT -.->|B₁| DIA
 
     SRC --> LNS -->|520 nm| DIA
     MAG -.->|B₀| DIA
@@ -60,33 +60,31 @@ flowchart TB
 | Section | Subtotal (USD) |
 |---------|----------------|
 | Control & acquisition | **0** |
-| Microwave | **42** |
-| Optical pump | **44** |
+| Microwave (purchased) | **27** |
+| Optical pump (Amazon laser only) | **28** |
 | Sample | **0** |
 | Detection | **83** |
-| **Conceptual subassemblies (excludes bench mechanics & safety)** | **169** |
+| **Conceptual subassemblies (excludes Thorlabs mechanics & safety)** | **138** |
 
-*Conceptual blocks omit Thorlabs breadboard/posts/clamps ($267 list for T1–T10) and laser safety glasses ($23). Those appear in the physical view and overall total.*
+*Attenuator (~$16) omitted — add only if power is too high. **CAX183** ($16) is in the Thorlabs subtotal below.*
 
 ---
 
 ## Physical (build & layout) — costs
 
-Thorlabs lines follow [parts_list.md](../parts_list.md) Tier 1 cart; **MB4** is counted under **Bench**; laser and holder posts are split per [subassembly table](parts_diagram.md#what-each-subassembly-is).
+Thorlabs lines match [thorlabs_cart_p0.csv](../thorlabs_cart_p0.csv) (no **MB4**). MW chain on bench/table via **SMA coax** (lab or Amazon **M4**); **Burke antenna** at holder.
 
 ```mermaid
 flowchart TB
     PC["PC, existing, 0"]
 
-    subgraph BENCH ["Bench — RF, microcontroller, breadboard — section total $79"]
+    subgraph BENCH ["Bench — RF & microcontroller — section total $27"]
         CTL["microcontroller, Uno / Nucleo, $0"]
         SYN["synthesizer, ADF4351 module, $23"]
         AMP["MW amp, TQP3M9009, $4"]
-        ATT["RF attenuator, lab SMA, $0"]
-        COAX["SMA coax, lab / Amazon RG316, $0"]
-        MB4["breadboard, Thorlabs MB4, $52"]
+        COAX["SMA coax, lab / Amazon, $0"]
         CTL -->|SPI| SYN
-        SYN --> AMP --> ATT --> COAX
+        SYN --> AMP --> COAX
     end
 
     subgraph LASERASM ["Laser assembly — section total $150"]
@@ -100,26 +98,24 @@ flowchart TB
         POST_L --- LMR05S
     end
 
-    subgraph HOLDER ["Sample holder — section total $206"]
+    subgraph HOLDER ["Sample holder — section total $191"]
         DIA["diamond, BurkeLab chip, $0"]
         LP1["filter, SCHOTT RG630, $37"]
         LP2["filter, Newport 5CGA-630, $38"]
         SM05["filter stack, SM05L10 + SM05RR + LMR05, $40"]
-        DETPCB["detector PCB, BPW34S-Z + OPA381, $8"]
-        TR3C["detector post, Thorlabs TR3C, $14"]
-        WPCB["wire-launch PCB, JLCPCB 2-layer, $15"]
-        WIRE["copper wire, BurkeLab 40 µm, $0"]
+        DETPCB["detector perfboard, lab BPW34 + OPA381, $8"]
+        ANT["Burke MW antenna, PCB + SMA female, $0"]
         MAG["magnet, lab Nd disk, $0"]
         POST_H["post lines ×2, PH2 + CF125 + TR4 each, $54"]
+        TR3C["detector post optional, Thorlabs TR3C, $14"]
         DIA --> LP1 --> LP2 --> DETPCB
-        WPCB --> WIRE
         SM05 --- LP1
         TR3C --- DETPCB
     end
 
     PC <-->|USB| CTL
-    COAX -->|SMA to holder| WPCB
-    WIRE -.->|RF current near top face| DIA
+    COAX -->|SMA male to female| ANT
+    ANT -.->|RF near sample| DIA
     L2 -.->|520 nm beam down| DIA
     MAG -.->|B₀| DIA
     DETPCB -->|shielded wire to bench| CTL
@@ -127,10 +123,10 @@ flowchart TB
 
 | Build unit | Subtotal (USD) | Notes |
 |------------|----------------|--------|
-| **Bench** | **79** | MB4 + ADF4351 + 1× amp; CTL/coax/attenuator at $0 (lab) |
+| **Bench** | **27** | ADF4351 + 1× amp; CTL + coax at $0 (lab); no breadboard for RF |
 | **Laser assembly** | **150** | Quarton + CAX183 + VC3C + LMR05S + one post line |
-| **Sample holder** | **206** | Both filters + SM05 stack + detector ICs + wire PCB + TR3C + two post lines |
-| **Physical subassemblies** | **435** | Excludes safety glasses ($23) |
+| **Sample holder** | **191** | Filters + SM05 stack + detector ICs + TR3C + two post lines; Burke antenna $0 |
+| **Physical subassemblies** | **368** | Excludes safety glasses ($23); **MB4** lab loan for posts |
 
 ---
 
@@ -138,12 +134,21 @@ flowchart TB
 
 | Category | Ext $ |
 |----------|-------|
-| Conceptual/detection + RF + optics ICs & modules (no Thorlabs mechanics) | 169 |
-| Thorlabs optomechanics T1–T10 (incl. split above) | 267 |
-| Laser safety glasses (Walmart O3) | 23 |
-| **Overall P0 list (Scenario B)** | **~459** |
+| Purchased MW + optics modules + filters + detector ICs (no Thorlabs) | **138** |
+| Thorlabs optomechanics + CAX183 ([cart CSV](../thorlabs_cart_p0.csv), no MB4) | **~231** |
+| Laser safety glasses (Walmart O3) | **23** |
+| **Overall P0 list (before tax/shipping)** | **~392** |
 
-Add **~10–15% + shipping**; optional **SPW603** spanner (+$13) and **2nd TQP3M9009** (+$4) not included. Full vendor tables: [parts_list.md](../parts_list.md#orders-by-vendor).
+| Removed vs earlier BOM | Savings (list) |
+|------------------------|----------------|
+| **MB4** (lab breadboard) | ~52 |
+| **M3** attenuator (defer) | ~16 |
+| **M5** PCB-mount SMA (on Burke antenna) | ~9 |
+| **M6** custom wire-launch PCB (Burke antenna) | ~15 |
+
+Add **~10–15% + shipping**; optional **SPW603** spanner (+$13–37) and **2nd TQP3M9009** (+$4) not included. **Amazon wishlist (MW + laser):** team checkout **~$102** (Oct 2026).
+
+Full vendor tables: [parts_list.md](../parts_list.md#orders-by-vendor).
 
 ### Stack (top → bottom) — line items
 
@@ -160,5 +165,11 @@ Add **~10–15% + shipping**; optional **SPW603** spanner (+$13) and **2nd TQP3M
       │  BPW34  │  photodiode, BPW34S-Z, $4
       │ OPA381  │  TIA, OPA381AIDGKR, $4
       └─────────┘
-   wire PCB, 15 · Burke wire, 0 · SM05/LMR05/TR3C/mechanics in holder subtotal
+   Burke MW antenna (SMA), $0 · SM05/LMR05/TR3C/mechanics in holder subtotal
+```
+
+### Microwave cable chain (purchased path)
+
+```text
+ADF4351 → TQP3M9009 → [attenuator if needed] → SMA coax → Burke antenna (SMA female)
 ```

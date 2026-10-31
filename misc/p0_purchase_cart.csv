@@ -1,0 +1,25 @@
+vendor,item_id,mpn,qty,phase,notes
+EECS lab,T1,MB4,1,P0,Optical post base; not in misc/thorlabs_cart_p0.csv
+BurkeLab,M6,MW antenna PCB + SMA female,1,P0,Connect via SMA coax from amp
+BurkeLab,S1,NV diamond,1,P0,
+Thorlabs,T2,PH2,3,P0,Rapid upload: https://www.thorlabs.com/cart?rapidOrder=upload-a-cart
+Thorlabs,T3,CF125,3,P0,
+Thorlabs,T4,TR4,3,P0,
+Thorlabs,T5,VC3C,1,P0,
+Thorlabs,T6,LMR05S,1,P0,
+Thorlabs,T7,SM05L10,1,P0,
+Thorlabs,T8,SM05RR,1,P0,
+Thorlabs,T9,LMR05,1,P0,
+Thorlabs,T10,TR3C,1,P0,
+Thorlabs,O2,CAX183,1,P0,
+Thorlabs,T11,SPW603,1,P0,Optional; delete row in CSV if skipping
+Amazon,M1,ADF4351 module,1,P0,Team wishlist
+Amazon,M2,TQP3M9009,1,P0,Order 2 for recommended build; 2nd can wait for P1
+Amazon,O1,VLM-520-74 LPA,1,P0,Team wishlist
+Amazon,M4,RG316 SMA coax,1,P0,Buy only if lab cannot supply
+Edmund,F1,RG630 16-420,1,P0,
+Newport,F2,5CGA-630,1,P0,
+DigiKey,F3,BPW-34-S-Z,1,P0,
+DigiKey,F4,OPA381AIDGKR,1,P0,
+DigiKey,F6,TIA passives,1,P0,Buy only if lab cannot supply
+Walmart,O3,Laser safety glasses,1,P0,OD >=2 @ 520 nm
