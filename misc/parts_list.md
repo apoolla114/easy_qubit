@@ -1,6 +1,6 @@
 # Bill of materials (optimized)
 
-**Apparatus:** Ensemble NV **CW ODMR** · **Program budget:** ~**$800** · **December cash target:** ~**$500–550** (lab/Burke items excluded)
+**Apparatus:** Ensemble NV **CW ODMR** · **December cash target:** ~**$500–550** (lab/Burke items excluded) · **P0 checkout ref.:** ~**$572** (team, Oct 2026). Full-program budget: branch **`budget-800-stretch`**.
 
 **Diagram:** [diagrams/parts_diagram.md](diagrams/parts_diagram.md) · **Diagram (costs):** [diagrams/parts_diagram_cost.md](diagrams/parts_diagram_cost.md) · **Goals:** [goals.md](goals.md) · **Add-on cart (vs original team list):** [parts_list_additional_purchases.md](parts_list_additional_purchases.md)
 
@@ -114,9 +114,9 @@ Use this section for **purchase carts**. Master BOM (by subsystem) is [below](#m
 
 | Scenario | What’s included | Est. team spend |
 |----------|-----------------|-----------------|
-| **A — December minimum** | P0; **1×** amp; Thorlabs Tier 1 | **~$480–540** |
-| **B — December recommended** | P0; **2×** amp; full Thorlabs Tier 1 | **~$540–620** |
-| **C — Program cap (~$800)** | B + P1 (switch, KM100) | **~$650–780** |
+| **A — December minimum** | P0; **1×** amp; Thorlabs P0 cart | **~$392–430** list (+ tax/ship) |
+| **B — December recommended** | P0; **2×** amp; full Thorlabs P0 cart | **~$396–440** list (+ tax/ship) |
+| **C — P1 add-ons** | B + switch, KM100, extra amp, att. | See P1 rows; totals in branch `budget-800-stretch` |
 | **D — ~$300 cash** | Core RF + optics + **one** filter + **minimal** Thorlabs; **heavy lab loan** | **~$250–320** out of pocket |
 
 **Not in budget (defer):** RF isolator ($100+), IVC102 integrator, TQP7M9103 driver.

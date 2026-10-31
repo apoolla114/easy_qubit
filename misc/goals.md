@@ -1,6 +1,6 @@
 # Project goals
 
-**Apparatus:** Ensemble NV **continuous-wave optically detected magnetic resonance (CW ODMR)** — prove the BurkeLab diamond and our MW/optical/readout chain with a **~$800** budget.
+**Apparatus:** Ensemble NV **continuous-wave optically detected magnetic resonance (CW ODMR)** — prove the BurkeLab diamond and our MW/optical/readout chain on the **December PoC** budget (see [parts_list.md](parts_list.md)). Full-program budget notes: git branch **`budget-800-stretch`**.
 
 **Diagram:** [diagrams/parts_diagram.md](diagrams/parts_diagram.md) (conceptual + physical) · **Parts:** [parts_list.md](parts_list.md)
 
@@ -44,7 +44,7 @@ Physics goal unchanged: **PL vs MW frequency** near ~2.87 GHz (with **magnet** f
 - **Assembly complete** with optical and MW paths wired and characterized separately  
 - Qualitative MW effect on PL (even if sweep is noisy)
 
-### January–March — extensions (~$800 total cap)
+### January–March — extensions
 
 Build on December hardware; order depends on what failed in PoC.
 
@@ -100,4 +100,3 @@ Build on December hardware; order depends on what failed in PoC.
 | Phase | Target spend | Notes |
 |-------|--------------|--------|
 | December core | ≤ ~500 | See [parts_list.md](parts_list.md); lab/Burke reduce cash |
-| Full program | ~800 | Extensions: switch, fab, spare amps, etc. |
