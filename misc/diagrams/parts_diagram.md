@@ -26,7 +26,7 @@ Two views of the same apparatus:
 | 520 nm pump + focus                 | **Laser assembly** — Quarton + CAX183                              |
 | NV sample + B₀                      | **Holder** — diamond + magnet                                      |
 | Filter stack (PL band)              | **Holder** — RG630, 5CGA-630 in stack                              |
-| Photodiode + TIA                    | **Holder** — detector PCB (bottom of stack)                        |
+| Photodiode + TIA                    | **Holder** — **BPW34** on filters; **F5** breakout + **OPA381** under PD on **MB4** |
 | Oscilloscope                        | **Lab only** — optional probe on TIA output (not in PoC data path) |
 
 
@@ -106,21 +106,27 @@ flowchart TB
         SYN --> AMP --> ATT --> COAX
     end
 
-    subgraph LASERASM ["Laser assembly — lab breadboard post + VC3C clamp"]
+    subgraph LASERASM ["Laser assembly — Thorlabs MB4 breadboard"]
+        BOARD["MB4 breadboard\n(4″ × 6″)"]
+        QLM["Quarton QLM-1125\n2-axis laser mount"]
         LASER["Quarton 520 nm module\n(built-in driver & collimation)"]
-        L2["CAX183 in LMR05S"]
+        POST_L["Lens post\nTR1 → MB4"]
+        L2["CAX183 in LMR7"]
+        BOARD --- QLM --- LASER
+        BOARD --- POST_L --- L2
         LASER --> L2
     end
 
-    subgraph HOLDER ["Sample holder — Thorlabs post + SM05 filter stack"]
+    subgraph HOLDER ["Sample holder — contact stack on detector (Mariani-style)"]
         direction TB
         DIA["Diamond (top face — BurkeLab)"]
         LP1["RG630"]
         LP2["5CGA-630"]
-        DETPCB["Detector PCB\nBPW34 + OPA381 TIA"]
+        PD["BPW34 photodiode"]
+        BRK["Stargazer breakout\nOPA381 TIA — screws to MB4"]
         ANT["Burke MW antenna\n(PCB + SMA female)"]
         MAG["Permanent magnet\n(on or near holder)"]
-        DIA --> LP1 --> LP2 --> DETPCB
+        DIA --> LP1 --> LP2 --> PD --> BRK
     end
 
     PC <-->|USB| CTL
@@ -128,7 +134,7 @@ flowchart TB
     ANT -.->|RF near sample| DIA
     L2 -.->|520 nm beam down| DIA
     MAG -.->|B₀| DIA
-    DETPCB -->|shielded wire to bench| CTL
+    BRK -->|shielded wire to bench| CTL
 ```
 
 
@@ -140,8 +146,8 @@ flowchart TB
 
 | Build unit         | Parts inside                                                                       | How it connects                                                                            |
 | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Laser assembly** | **VC3C** + Quarton on **TR/PH**; **LMR05S** + CAX183 on second post              | Aim at **top** of diamond; posts on **lab MB4** (or equivalent)                            |
-| **Sample holder**  | **SM05L10** + RG630 + 5CGA-630; diamond; **lab perfboard** PD+TIA; **Burke antenna** | **SMA coax** to Burke **SMA female**; **shielded** analog to CTL                         |
+| **Laser assembly** | Quarton in **QLM-1125**, base held to **MB4** by 2× **CL5A**; CAX183 in **LMR7** on **TR1** screwed into **MB4** | Lens height is fixed (~38 mm center) until **PH1 + CF125** are added — see [parts_list_reference.md](../parts_list_reference.md#lens-post-ph1--cf125-deferred) |
+| **Sample holder**  | RG630 + 5CGA-630 + diamond on **BPW34**; **F5** Stargazer breakout (**OPA381**) on **MB4** under PD; **Burke antenna** | Optional **SM05** cage + **TR1.5** / **TR3C** in [reference](../parts_list_reference.md) |
 | **MW bench**       | ADF4351, amp(s), optional att, **SMA coax** on table                               | **Synth → amp → (att) → coax → Burke antenna**; CTL **USB** to PC; lab PSUs              |
 
 
@@ -159,8 +165,9 @@ flowchart TB
       ├─────────┤
       │ 5CGA-630│
       ├─────────┤
-      │  BPW34  │  ← same PCB as OPA381 (TIA)
-      │ OPA381  │
+      │  BPW34  │  ← active area under filters
+      ├─────────┤
+      │ F5 PCB  │  ← Stargazer breakout; **OPA381** (8-VSSOP) + TIA passives; standoffs to **MB4**
       └─────────┘
    Burke MW antenna (SMA) ── RF near diamond / PL region
 ```
@@ -169,8 +176,8 @@ flowchart TB
 
 ### Build & bring-up order
 
-1. **Detector PCB** — solder BPW34 + OPA381; verify TIA output (no diamond yet).
-2. **Holder** — stack filters; diamond on top; **lab perfboard** PD+TIA; mount **Burke antenna** near sample; add magnet.
+1. **Detector** — solder **OPA381** (+ **F6** passives) to **F5** breakout (8-VSSOP / 0.65 mm pad side); mount board to **MB4**; wire **BPW34** to TIA input; verify output (no diamond yet).
+2. **Holder** — stack filters on **BPW34**; diamond on top; mount **Burke antenna** near sample; add magnet.
 3. **Laser assembly** — align beam on diamond top face.
 4. **Bench RF** — synth → amp → (att if needed) → **SMA coax** → Burke **SMA female**; **low power** first.
 5. **Microcontroller** — SPI frequency sweeps + ADC readout; log PL vs frequency.
@@ -182,6 +189,7 @@ flowchart TB
 - **ADC** is inside the microcontroller; detector PCB provides **voltage** to an analog input.  
 - Match **ADF4351 SPI logic** (often 3.3 V) to CTL I/O.  
 - Short **shielded** run from detector PCB to bench CTL; scope optional on TIA out for lab debug only.
+- Quarton housing is at **+V** (not ground) — keep it insulated from the **MB4** and posts.
 
 
 

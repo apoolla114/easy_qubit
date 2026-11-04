@@ -1,235 +1,75 @@
-# Bill of materials (optimized)
+# Parts list — current order
 
-**Apparatus:** Ensemble NV **CW ODMR** · **December cash target:** ~**$500–550** (lab/Burke items excluded) · **P0 checkout ref.:** ~**$572** (team, Oct 2026). Full-program budget: branch **`budget-800-stretch`**.
+Parts we are **buying now**, by vendor. List USD (Oct 2026); add ~10–15% + shipping. Optional/later items, lab- and Burke-supplied parts, budgets, and the checklist are in [parts_list_reference.md](parts_list_reference.md).
 
-**Diagram:** [diagrams/parts_diagram.md](diagrams/parts_diagram.md) · **Diagram (costs):** [diagrams/parts_diagram_cost.md](diagrams/parts_diagram_cost.md) · **Goals:** [goals.md](goals.md) · **Add-on cart (vs original team list):** [parts_list_additional_purchases.md](parts_list_additional_purchases.md)
+**Diagram (costs):** [diagrams/parts_diagram_cost.md](diagrams/parts_diagram_cost.md)
 
-**Legend:** **P0** = December assembly · **P1** = after bring-up · **P2** = March stretch · **Given/Lab** = no team cash
+## [Thorlabs](https://www.thorlabs.com) — $107 · [cart CSV](thorlabs_cart_p0.csv)
 
-Prices are **list USD (Oct 2026)**; add **~10–15% + shipping**. Order through **course / 159A** when required.
+| ID | Item | Qty | MPN | Unit $ | Ext $ | Link |
+|----|------|-----|-----|--------|-------|------|
+| T1 | Breadboard 4″×6″ | 1 | MB4 | 52 | 52 | [MB4](https://www.thorlabs.com/item/MB4) |
+| T2 | Optical post, L=1″ (lens, screwed into MB4) | 1 | TR1 | 6 | 6 | [TR1](https://www.thorlabs.com/item/TR1) |
+| T6 | Lens mount Ø7 mm (for CAX183) | 1 | LMR7 | 22 | 22 | [LMR7](https://www.thorlabs.com/item/LMR7) |
+| T11 | Table clamp (holds QLM-1125 base) | 2 | CL5A | 5 | 11 | [CL5A](https://www.thorlabs.com/item/CL5A) |
+| O2 | Focusing lens | 1 | CAX183 | 16 | 16 | [CAX183](https://www.thorlabs.com/item/CAX183) |
 
----
+**Hardware not in Thorlabs cart** (lab, hardware store, or [HW-KIT2](https://www.thorlabs.com/item/HW-KIT2)): see [laser assembly fasteners](parts_list_reference.md#laser-assembly-fasteners-not-included).
 
-## Orders by vendor
+*Deferred:* [PH1](https://www.thorlabs.com/item/PH1) + [CF125](https://www.thorlabs.com/item/CF125) (lens line); [LMR05](https://www.thorlabs.com/item/LMR05) + [SM05L10](https://www.thorlabs.com/item/SM05L10) + [SM05RR](https://www.thorlabs.com/item/SM05RR) (SM05 filter cage); [TR1.5](https://www.thorlabs.com/item/TR1.5) + [TR3C](https://www.thorlabs.com/item/TR3C) (sample posts) — see [parts_list_reference.md](parts_list_reference.md).
 
-Use this section for **purchase carts**. Master BOM (by subsystem) is [below](#master-bom-by-subsystem).
+## [Amazon](https://www.amazon.com) — $105 · [team wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share)
 
-### [Thorlabs](https://www.thorlabs.com/optomechanical-components) — optomechanics + CAX183 (~**$231** list, P0 cart)
+| ID | Item | Qty | MPN | Unit $ | Ext $ | Link |
+|----|------|-----|-----|--------|-------|------|
+| M1 | MW synthesizer board | 1 | ADF4351 module | 23 | 23 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
+| M2 | MW amplifier board | 1 | TQP3M9009 | 4 | 4 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
+| M4 | SMA coax, RG316 male–male (amp → Burke antenna) | 1 | RG316 SMA | 9 | 9 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
+| O1 | 520 nm laser module | 1 | Quarton VLM-520-74 LPA | 28 | 28 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
+| O4 | Laser mount, Ø6–12.5 mm | 1 | Quarton QLM-1125 | 32 | 32 | [QLM-1125](https://www.amazon.com/Quarton-QLM-1125-Module-Holder-12-5mm/dp/B07VPNTG2W) |
+| F5 | SMD→DIP breakout (8-VSSOP TIA), 5-pack — **use 1** under **BPW34** | 1 | Stargazer 492 / B07R5QR9P3 | 9 | 9 | [Listing](https://www.amazon.com/gp/product/B07R5QR9P3) |
 
-**Cart export:** [thorlabs_cart_p0.csv](thorlabs_cart_p0.csv) (no **MB4** — lab breadboard for optical posts).
+## [Edmund Optics](https://www.edmundoptics.com) — $37
 
-| ID | Item | Qty | MPN | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|-----|--------|-------|-------|------|
-| T2 | Post holder, L=2″ | 3 | PH2 | 10 | 30 | P0 | [PH2](https://www.thorlabs.com/item/PH2) |
-| T3 | Clamping fork | 3 | CF125 | 10 | 31 | P0 | [CF125](https://www.thorlabs.com/item/CF125) |
-| T4 | Optical post, L=4″ | 3 | TR4 | 7 | 21 | P0 | [TR4](https://www.thorlabs.com/item/TR4) |
-| T5 | Large V-clamp (laser module) | 1 | VC3C | 48 | 48 | P0 | [VC3C](https://www.thorlabs.com/item/VC3C) |
-| T6 | Lens mount SM05 | 1 | LMR05S | 31 | 31 | P0 | [LMR05S](https://www.thorlabs.com/item/LMR05S) |
-| T7 | SM05 lens tube | 1 | SM05L10 | 17 | 17 | P0 | [SM05L10](https://www.thorlabs.com/item/SM05L10) |
-| T8 | SM05 retaining ring (extra) | 1 | SM05RR | 5 | 5 | P0 | [SM05RR](https://www.thorlabs.com/item/SM05RR) |
-| T9 | Lens mount (filter stack base) | 1 | LMR05 | 18 | 18 | P0 | [LMR05](https://www.thorlabs.com/item/LMR05) |
-| T10 | 90° construction post | 1 | TR3C | 14 | 14 | P0 | [TR3C](https://www.thorlabs.com/item/TR3C) |
-| O2 | Focusing lens | 1 | CAX183 | 16 | 16 | P0 | [CAX183](https://www.thorlabs.com/item/CAX183) |
-| T11 | Spanner wrench (optional) | 1 | SPW603 | 13 | 0–13 | P0 | [SPW603](https://www.thorlabs.com/item/SPW603) |
-| T12 | Kinematic mount (optional) | 1 | KM100 | 64 | 64 | P1 | [KM100](https://www.thorlabs.com/item/KM100) |
-| T13 | Hardware kit (optional) | 1 | HW-KIT2 | 15 | 0–15 | P1 | [HW-KIT2](https://www.thorlabs.com/item/HW-KIT2) |
+| ID | Item | Qty | MPN | Unit $ | Ext $ | Link |
+|----|------|-----|-----|--------|-------|------|
+| F1 | SCHOTT RG630 long-pass, Ø12.5 mm, 1 mm | 1 | 16-420 | 37 | 37 | [16-420](https://www.edmundoptics.com/p/schott-rg630-125mm-dia-1mm-thick-colored-glass-longpass-filter/44313/) |
 
-### [Amazon](https://www.amazon.com) — RF + laser (~**$55–67** list P0; team checkout **~$102** w/ tax/ship)
+## [Newport](https://www.newport.com) — $38
 
-**MW chain:** synthesizer → amplifier → *(optional attenuator)* → SMA coax → **Burke antenna (SMA female)**.
+| ID | Item | Qty | MPN | Unit $ | Ext $ | Link |
+|----|------|-----|-----|--------|-------|------|
+| F2 | Colored-glass long-pass, 630 nm | 1 | 5CGA-630 | 38 | 38 | [5CGA-630](https://www.newport.com/p/5CGA-630) |
 
-| ID | Item | Qty | MPN / search | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|--------------|--------|-------|-------|------|
-| M1 | ADF4351 synthesizer board | 1 | ADF4351 module | 23 | 23 | P0 | [Team wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| M2 | MW amplifier board | 1–2 | TQP3M9009 | 4 | 4–8 | P0/P1 | [Team wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| M4 | SMA coax (if not from lab) | 1 | RG316 SMA male–male | 9 | 0–9 | P0 | [Team wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| O1 | 520 nm laser module | 1 | Quarton VLM-520-74 LPA | 28 | 28 | P0 | [Team wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| M3 | RF attenuator | 1 | Fixed SMA (e.g. 10–20 dB) | 16 | 16 | P1 | Defer — add only if power too high |
-| M8 | MW switch (optional) | 1 | HMC284 SPDT module | 15–22 | 15–22 | P1 | [Example listing](https://www.amazon.com/HMC284-Switch-Reflective-Isolation-Control/dp/B0DZHNS5HY) |
+## [DigiKey](https://www.digikey.com) — $8
 
-### [Edmund Optics](https://www.edmundoptics.com) — filter (~**$37**, P0)
+| ID | Item | Qty | MPN | Unit $ | Ext $ | Link |
+|----|------|-----|-----|--------|-------|------|
+| F3 | Photodiode, SMT | 1 | BPW-34-S-Z | 4 | 4 | [BPW-34-S-Z](https://www.digikey.com/en/products/detail/ams-osram-ag/BPW-34-S-Z/1893856) |
+| F4 | Transimpedance amplifier | 1 | OPA381AIDGKR | 4 | 4 | [OPA381AIDGKR](https://www.digikey.com/en/products/detail/texas-instruments/OPA381AIDGKR/1572641) |
 
-| ID | Item | Qty | MPN | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|-----|--------|-------|-------|------|
-| F1 | SCHOTT RG630, Ø12.5 mm, 1 mm | 1 | Stock **16-420** | 37 | 37 | P0 | [16-420](https://www.edmundoptics.com/p/schott-rg630-125mm-dia-1mm-thick-colored-glass-longpass-filter/44313/) |
+## [Walmart](https://www.walmart.com) — $23
 
-### [Newport / MKS](https://www.newport.com) — filter (~**$38**, P0)
+| ID | Item | Qty | MPN | Unit $ | Ext $ | Link |
+|----|------|-----|-----|--------|-------|------|
+| O3 | Laser safety glasses, OD ≥2 @ 520 nm | 1 | — | 23 | 23 | [Listing](https://www.walmart.com/ip/seort/20299720860?selectedSellerId=103154903) |
 
-| ID | Item | Qty | MPN | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|-----|--------|-------|-------|------|
-| F2 | Colored-glass alternative LP, 630 nm | 1 | **5CGA-630** | 38 | 38 | P0 | [5CGA-630](https://www.newport.com/p/5CGA-630) |
+## Total
 
-### [DigiKey](https://www.digikey.com) — detector ICs (~**$8–11**, P0/P1)
+| Vendor | $ |
+|--------|---|
+| Thorlabs | 107 |
+| Amazon | 105 |
+| Edmund Optics | 37 |
+| Newport | 38 |
+| DigiKey | 8 |
+| Walmart | 23 |
+| **Total (list, before tax/shipping)** | **318** |
 
-| ID | Item | Qty | MPN | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|-----|--------|-------|-------|------|
-| F3 | Photodiode, SMT | 1 | BPW34S-Z (BPW-34-S-Z) | 4 | 4 | P0 | [BPW-34-S-Z](https://www.digikey.com/en/products/detail/ams-osram-ag/BPW-34-S-Z/1893856) |
-| F4 | Transimpedance amplifier | 1 | OPA381AIDGKR | 4 | 4 | P0 | [OPA381AIDGKR](https://www.digikey.com/en/products/detail/texas-instruments/OPA381AIDGKR/1572641) |
-| F6 | TIA passives (if not from lab) | 1 | R/C per OPA381 datasheet | 5 | 0–5 | P0 | [OPA381 datasheet](https://www.ti.com/product/OPA381) |
-| M9 | 50 Ω SMA termination (optional) | 1 | 132360 or equiv. | 3 | 0–3 | P1 | Search [132360 SMA termination](https://www.digikey.com/en/products/filter/rf-termination/742?s=132360) |
+## Optical heights (approximate)
 
-### [Walmart](https://www.walmart.com) — laser safety (P0)
-
-| ID | Item | Qty | MPN | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|-----|--------|-------|-------|------|
-| O3 | Laser safety glasses | 1 | OD ≥2 @ 520 nm | 23 | 23 | P0 | [Example listing](https://www.walmart.com/ip/seort/20299720860?selectedSellerId=103154903) |
-
-### BurkeLab — supplied (no link)
-
-| ID | Item | Qty | Phase | Notes |
-|----|------|-----|-------|-------|
-| M6 | MW antenna assembly | 1 | P0 | PCB + **SMA female** + wire; team connects with SMA coax |
-| S1 | NV diamond sample | 1 | P0 | On SM05 filter stack |
-
-### EECS lab / team — supplied or check out (no purchase)
-
-| ID | Item | Qty | Phase | Notes |
-|----|------|-----|-------|-------|
-| C1 | Microcontroller | 1 | P0 | Uno or Nucleo — [wiring_guide](diagrams/wiring_guide.md) |
-| C2 | USB A–B cable | 1 | P0 | |
-| T1 | Breadboard 4″×6″ | 1 | P0 | **MB4** (or equivalent) — clamp optical posts; MW on table via SMA |
-| M4 | SMA coax | — | P0 | If not bought on Amazon |
-| F5 | Detector PCB (8-VSSOP) | 1 | P0 | PD + TIA layout |
-| F7 | Permanent magnet | 1 | P0 | Zeeman split |
-| P1 | Bench power supplies | — | P0 | MW, laser, CTL |
-| P2 | Oscilloscope | 0 | — | Debug only |
-
----
-
-## Vendor subtotals (list price, Scenario B)
-
-| Vendor | P0 buy | P1 optional | Notes |
-|--------|--------|-------------|--------|
-| Thorlabs | ~231 | +64–79 | [thorlabs_cart_p0.csv](thorlabs_cart_p0.csv); **MB4** from lab |
-| Amazon | ~55–67 | +31–38 | Wishlist: M1, M2, O1 (+ M4 if needed); **~$102** team checkout |
-| Edmund Optics | 37 | — | |
-| Newport | 38 | — | |
-| DigiKey | 8 | +3 | |
-| Walmart | 23 | — | |
-| **Team cash subtotal** | **~392–414** | **+80–105** | + tax/shipping → **~470–572** program (excl. lab **MB4**; team **~$572** ref.) |
-
----
-
-## Budget summary
-
-| Scenario | What’s included | Est. team spend |
-|----------|-----------------|-----------------|
-| **A — December minimum** | P0; **1×** amp; Thorlabs P0 cart | **~$392–430** list (+ tax/ship) |
-| **B — December recommended** | P0; **2×** amp; full Thorlabs P0 cart | **~$396–440** list (+ tax/ship) |
-| **C — P1 add-ons** | B + switch, KM100, extra amp, att. | See P1 rows; totals in branch `budget-800-stretch` |
-| **D — ~$300 cash** | Core RF + optics + **one** filter + **minimal** Thorlabs; **heavy lab loan** | **~$250–320** out of pocket |
-
-**Not in budget (defer):** RF isolator ($100+), IVC102 integrator, TQP7M9103 driver.
-
-### Scenario D — ~$300 out-of-pocket (what has to give)
-
-You **cannot** buy the full Thorlabs Tier 1 cart (~**$283**) plus both filters (~**$75**) plus Amazon RF/laser (~**$55**) for **$300 total** — that list alone is **~$410** before tax/shipping.
-
-**$300 is possible** if the department/lab supplies most **optomechanics and fixturing**, and you **defer** some performance items:
-
-| Buy with team cash (~$250–300 list + ship) | Est. |
-|--------------------------------------------|------|
-| M1 ADF4351 + M2 **1×** amp + O1 laser (Amazon) | ~55 |
-| F3 + F4 (DigiKey); F6 from lab | ~8 |
-| F1 RG630 only — **defer F2 Newport** to P1 | ~37 |
-| **Minimal Thorlabs:** SM05L10 + SM05RR + LMR05 (filter stack on one post) | ~40 |
-| O2 CAX183 **or** defer and use module collimation only | 0–16 |
-| O3 safety glasses **if lab does not lend** | 0–23 |
-
-| Must come from **EECS lab / advisor** (not in $300) | |
-|-----------------------------------------------------|--|
-| Breadboard + **3×** post / holder / fork (replaces MB4, PH2, CF125, TR4) | ~$130 value |
-| Laser clamp (replaces **VC3C**) — generic post clamp or borrowed V-clamp | ~$48 value |
-| LMR05S + extra posts if separate lens line (or single shared post layout) | ~$31–50 value |
-| SMA coax, magnet, detector PCB, passives, PSU, scope | |
-| Safety glasses if not purchased | ~$23 value |
-| Burke: diamond + wire | |
-
-| Defer past $300 build | Risk |
-|-----------------------|------|
-| **5CGA-630** (second filter) | More green leak; noisier PL |
-| **2nd TQP3M9009** | Weaker MW → harder ODMR |
-| **VC3C, KM100, MW switch** | Harder alignment; no pulsed MW |
-| **Full Thorlabs Tier 1** as written | Advisor may require some purchased Thorlabs — negotiate **SM05 stack only** (~$40) + lab breadboard |
-
-**Realistic December goal at $300:** assembled **CW** path, **PL on ADC**, automated **frequency sweep**; ODMR dip is **best effort** (alignment + MW coupling), not guaranteed.
-
----
-
-## Optimization choices (vs earlier draft)
-
-1. **Thorlabs** mounts on lab **MB4** (or equivalent plate) — not 3D-printed; MW bench uses SMA only.
-2. Filters **Ø12.5 / 12.7 mm** → [SM05L10](https://www.thorlabs.com/item/SM05L10) stack ([F1](https://www.edmundoptics.com/p/schott-rg630-125mm-dia-1mm-thick-colored-glass-longpass-filter/44313/), [F2](https://www.newport.com/p/5CGA-630)).
-3. **December:** 1× amp if tight; 2× recommended.
-4. **CTL on-chip ADC** only; no scope purchase.
-
----
-
-## Master BOM (by subsystem)
-
-| ID | Item | Qty | MPN | Vendor | Unit $ | Ext $ | Phase | Link |
-|----|------|-----|-----|--------|--------|-------|-------|------|
-| C1 | Microcontroller | 1 | Uno / Nucleo-H563ZI | Team / lab | 0 | 0 | P0 | [wiring_guide](diagrams/wiring_guide.md) |
-| C2 | USB cable | 1 | A–B | Lab | 0 | 0 | P0 | — |
-| M1 | MW synthesizer | 1 | ADF4351 | Amazon | 23 | 23 | P0 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| M2 | MW amplifier | 1–2 | TQP3M9009 | Amazon | 4 | 4–8 | P0/P1 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| M3 | RF attenuator | 1 | Fixed SMA | Amazon | 16 | 0 | P1 | Defer — not on wishlist |
-| M4 | SMA coax | 1 | RG316 | Lab / Amazon | — | 0–9 | P0 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| M6 | MW antenna (PCB + SMA) | 1 | Burke assembly | BurkeLab | 0 | 0 | P0 | — |
-| M8 | MW switch | 1 | HMC284 module | Amazon | 15–22 | 15–22 | P1 | [Example](https://www.amazon.com/HMC284-Switch-Reflective-Isolation-Control/dp/B0DZHNS5HY) |
-| M9 | SMA 50 Ω term. | 1 | 50 Ω load | Lab / DigiKey | 3 | 0–3 | P1 | [DigiKey search](https://www.digikey.com/en/products/filter/rf-termination/742) |
-| O1 | Laser module | 1 | VLM-520-74 LPA | Amazon | 28 | 28 | P0 | [Wishlist](https://www.amazon.com/hz/wishlist/ls/1HXJ4O5ZYQING?ref_=wl_share) |
-| O2 | Focusing lens | 1 | CAX183 | Thorlabs | 16 | 16 | P0 | [CAX183](https://www.thorlabs.com/item/CAX183) |
-| O3 | Safety glasses | 1 | OD @ 520 nm | Walmart | 23 | 23 | P0 | [Listing](https://www.walmart.com/ip/seort/20299720860?selectedSellerId=103154903) |
-| F1 | Long-pass filter | 1 | RG630 16-420 | Edmund | 37 | 37 | P0 | [16-420](https://www.edmundoptics.com/p/schott-rg630-125mm-dia-1mm-thick-colored-glass-longpass-filter/44313/) |
-| F2 | Long-pass filter | 1 | 5CGA-630 | Newport | 38 | 38 | P0 | [5CGA-630](https://www.newport.com/p/5CGA-630) |
-| F3 | Photodiode | 1 | BPW34S-Z | DigiKey | 4 | 4 | P0 | [BPW-34-S-Z](https://www.digikey.com/en/products/detail/ams-osram-ag/BPW-34-S-Z/1893856) |
-| F4 | TIA IC | 1 | OPA381AIDGKR | DigiKey | 4 | 4 | P0 | [OPA381AIDGKR](https://www.digikey.com/en/products/detail/texas-instruments/OPA381AIDGKR/1572641) |
-| F5 | Detector PCB | 1 | Custom | Lab | 9 | 0–9 | P0 | — |
-| F6 | TIA passives | 1 | R, C | DigiKey / lab | 5 | 0–5 | P0 | [OPA381](https://www.ti.com/product/OPA381) |
-| F7 | Magnet | 1 | Nd disk | Lab | 5 | 0–5 | P0 | — |
-| T1–T13 | Optomechanics | — | See Thorlabs table | Thorlabs | — | ~231–315 | P0/P1 | [Optomechanics](https://www.thorlabs.com/optomechanical-components) |
-| S1 | Diamond | 1 | Burke chip | BurkeLab | 0 | 0 | P0 | — |
-| P1 | Power supplies | — | — | Lab | 0 | 0 | P0 | — |
-| P2 | Oscilloscope | 0 | — | Lab | 0 | 0 | — | — |
-
----
-
-## Order waves
-
-**Wave 1 (P0):** Thorlabs [cart CSV](thorlabs_cart_p0.csv) (T2–T11 + O2); lab **MB4**; Amazon (M1, M2, O1, M4 if needed); Edmund F1; Newport F2; DigiKey F3–F4; Walmart O3; Burke **M6** antenna + **S1** diamond.
-
-**Wave 2 (P1):** M8, M9, T12, extra M2, T13.
-
-**Wave 3 (P2):** Loop antenna PCB, integrator — [stretch diagram](diagrams/parts_diagram_arduino_paper.md).
-
----
-
-## Pre-order checklist
-
-- [ ] Measure **Quarton OD** → [VC3C](https://www.thorlabs.com/item/VC3C) vs [VBC1](https://www.thorlabs.com/item/VBC1)
-- [ ] **CTL** SPI levels vs [ADF4351](https://www.analog.com/en/products/adf4351.html) module
-- [ ] **SMA coax** length/plugs for synth → amp → Burke **SMA female** (lab or Amazon **M4**)
-- [ ] Diamond retention on [SM05L10](https://www.thorlabs.com/item/SM05L10) face
-
----
-
-## Explicitly excluded
-
-| Item | Reason |
-|------|--------|
-| VCO + ramp (*Little bits*) | ADF4351 + CTL |
-| Epifluorescence microscope | SM05 stack |
-| 3D-printed mounts | Thorlabs Tier 1 |
-| External ADC | CTL ADC |
-| IVC102 (base build) | TIA PoC |
-| PCB-mount SMA (**M5**) | On Burke antenna |
-| Custom wire-launch PCB (JLC) | Burke **M6** antenna |
-| RF attenuator (**M3**) | Defer unless power too high |
-
----
-
-## References
-
-- Zhang et al., *Am. J. Phys.* **86**, 225 (2018) — [doi:10.1119/1.5023389](https://doi.org/10.1119/1.5023389)  
-- Mariani et al., *AIP Advances* **12**, 065321 (2022) — [doi:10.1063/5.0089161](https://doi.org/10.1063/5.0089161)
+| Part | How it's held | Center height |
+|------|---------------|---------------|
+| Laser in QLM-1125 | Pole, 6 mm travel | ~49–55 mm (Quarton photos) |
+| Filters + diamond (RG630, 5CGA-630, Burke chip) | Contact stack on **BPW34**; **F5** breakout (**OPA381**) on **MB4** standoffs below PD (Mariani-style) | ~2 mm above PD (paper); set by filter thickness + board stack |
+| CAX183 lens (LMR7, 12.7 mm optical height) | TR1 screwed into MB4 | 25.4 + 12.7 ≈ **38 mm** — aim/focus at low stack; add **PH1 + CF125** or **TR1.5** stack post if you need ~54 mm alignment |
